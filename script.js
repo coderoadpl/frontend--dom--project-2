@@ -1,99 +1,107 @@
-const loadTasks = function () {
-    return JSON.parse(localStorage.getItem('tasks')) || []
-}
+const initToDoList = (function () {
 
-const saveTasks = function () {
-    localStorage.setItem('tasks', JSON.stringify(tasks))
-}
-
-const addTask = function (newTaskText) {
-
-    if (!newTaskText) return
-
-    const newTask = {
-        text: newTaskText,
-        timestamp: Date.now(),
+    const loadTasks = function () {
+        return JSON.parse(localStorage.getItem('tasks')) || []
     }
 
-    tasks[tasks.length] = newTask
-
-    render()
-    saveTasks()
-}
-
-const renderTask = function (task) {
-
-    const li = document.createElement('li')
-
-    li.className = 'todo-list__list-item'
-
-    li.innerText = task.text
-
-    return li
-
-}
-
-const renderTasks = function () {
-    const tasksContainer = document.createElement('div')
-
-    const ol = document.createElement('ol')
-
-    for (let i = 0; i < tasks.length; i++) {
-
-        const li = renderTask(tasks[i])
-
-        ol.appendChild(li)
-
+    const saveTasks = function () {
+        localStorage.setItem('tasks', JSON.stringify(tasks))
     }
 
-    tasksContainer.appendChild(ol)
+    const addTask = function (newTaskText) {
 
-    return tasksContainer
-}
+        if (!newTaskText) return
 
-const renderForm = function () {
-    const formContainer = document.createElement('div')
-
-    const form = document.createElement('form')
-    const input = document.createElement('input')
-    const button = document.createElement('button')
-
-    form.className = 'todo-list__form'
-    input.className = 'todo-list__input'
-    button.className = 'todo-list__button'
-
-    button.innerText = 'ADD'
-
-    form.addEventListener(
-        'submit',
-        function (event) {
-            event.preventDefault()
-            addTask(input.value)
+        const newTask = {
+            text: newTaskText,
+            timestamp: Date.now(),
         }
-    )
 
-    form.appendChild(input)
-    form.appendChild(button)
+        tasks[tasks.length] = newTask
 
-    formContainer.appendChild(form)
+        render()
+        saveTasks()
+    }
 
-    return formContainer
-}
+    const renderTask = function (task) {
 
-const render = function (containerSelector = 'body') {
-    const container = document.querySelector(containerSelector)
+        const li = document.createElement('li')
 
-    if (!container) return
+        li.className = 'todo-list__list-item'
 
-    container.innerHTML = ''
+        li.innerText = task.text
 
-    const formContainer = renderForm()
-    const tasksContainer = renderTasks()
+        return li
 
-    container.appendChild(formContainer)
-    container.appendChild(tasksContainer)
-}
+    }
 
-const tasks = loadTasks()
+    const renderTasks = function () {
+        const tasksContainer = document.createElement('div')
 
-render()
+        const ol = document.createElement('ol')
+
+        for (let i = 0; i < tasks.length; i++) {
+
+            const li = renderTask(tasks[i])
+
+            ol.appendChild(li)
+
+        }
+
+        tasksContainer.appendChild(ol)
+
+        return tasksContainer
+    }
+
+    const renderForm = function () {
+        const formContainer = document.createElement('div')
+
+        const form = document.createElement('form')
+        const input = document.createElement('input')
+        const button = document.createElement('button')
+
+        form.className = 'todo-list__form'
+        input.className = 'todo-list__input'
+        button.className = 'todo-list__button'
+
+        button.innerText = 'ADD'
+
+        form.addEventListener(
+            'submit',
+            function (event) {
+                event.preventDefault()
+                addTask(input.value)
+            }
+        )
+
+        form.appendChild(input)
+        form.appendChild(button)
+
+        formContainer.appendChild(form)
+
+        return formContainer
+    }
+
+    const render = function (containerSelector = 'body') {
+        const container = document.querySelector(containerSelector)
+
+        if (!container) return
+
+        container.innerHTML = ''
+
+        const formContainer = renderForm()
+        const tasksContainer = renderTasks()
+
+        container.appendChild(formContainer)
+        container.appendChild(tasksContainer)
+    }
+
+    const init = function () {
+        render()
+    }
+
+    const tasks = loadTasks()
+
+    return init
+
+})()
