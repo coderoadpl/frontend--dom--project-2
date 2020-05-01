@@ -1,4 +1,4 @@
-const tasks = []
+const tasks = JSON.parse(localStorage.getItem('tasks')) || []
 
 const addTask = function (newTaskText) {
     const newTask = {
@@ -9,6 +9,8 @@ const addTask = function (newTaskText) {
     tasks[tasks.length] = newTask
 
     render()
+
+    localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
 const renderTasks = function () {
@@ -63,8 +65,5 @@ const render = function (containerSelector = 'body') {
     container.appendChild(formContainer)
     container.appendChild(tasksContainer)
 }
-
-addTask('Wynieś śmieci')
-addTask('Umyj okna')
 
 render()
