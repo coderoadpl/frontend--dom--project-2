@@ -7,9 +7,9 @@ const saveTasks = function () {
 }
 
 const addTask = function (newTaskText) {
-    
-    if(!newTaskText) return
-    
+
+    if (!newTaskText) return
+
     const newTask = {
         text: newTaskText,
         timestamp: Date.now(),
@@ -25,8 +25,7 @@ const renderTask = function (task) {
 
     const li = document.createElement('li')
 
-    li.style.fontFamily = 'sans-serif'
-    li.style.fontSize = '14px'
+    li.className = 'todo-list__list-item'
 
     li.innerText = task.text
 
@@ -59,22 +58,9 @@ const renderForm = function () {
     const input = document.createElement('input')
     const button = document.createElement('button')
 
-    form.style.display = 'flex'
-
-    input.style.borderRadius = '4px'
-    input.style.outline = 'none'
-    input.style.border = '1px solid rgba(0, 0, 0, 0.25)'
-    input.style.height = '20px'
-    input.style.boxSizing = 'content-box'
-    input.style.width = '100%'
-
-    button.style.borderRadius = '4px'
-    button.style.height = '20px'
-    button.style.outline = 'none'
-    button.style.boxSizing = 'content-box'
-    button.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'
-    button.style.border = '1px solid rgba(0, 0, 0, 0.25)'
-    button.style.width = '100px'
+    form.className = 'todo-list__form'
+    input.className = 'todo-list__input'
+    button.className = 'todo-list__button'
 
     button.innerText = 'ADD'
 
