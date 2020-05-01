@@ -25,13 +25,20 @@ const renderTasks = function () {
     return tasksContainer
 }
 
-const renderForm = function(){
+const renderForm = function () {
     const formContainer = document.createElement('div')
 
     const input = document.createElement('input')
     const button = document.createElement('button')
 
     button.innerText = 'ADD NEW TASK'
+
+    button.addEventListener(
+        'click',
+        function () {
+            addTask(input.value)
+        }
+    )
 
     formContainer.appendChild(input)
     formContainer.appendChild(button)
