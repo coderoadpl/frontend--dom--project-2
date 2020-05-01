@@ -21,13 +21,17 @@ const addTask = function (newTaskText) {
 const renderTasks = function () {
     const tasksContainer = document.createElement('div')
 
+    const ol = document.createElement('ol')
+
     for (let i = 0; i < tasks.length; i++) {
-        const div = document.createElement('div')
+        const li = document.createElement('li')
 
-        div.innerText = tasks[i].text
+        li.innerText = tasks[i].text
 
-        tasksContainer.appendChild(div)
+        ol.appendChild(li)
     }
+
+    tasksContainer.appendChild(ol)
 
     return tasksContainer
 }
