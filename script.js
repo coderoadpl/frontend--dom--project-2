@@ -11,6 +11,33 @@ const addTask = function (newTaskText) {
     render()
 }
 
+const renderTasks = function () {
+    const tasksContainer = document.createElement('div')
+
+    for (let i = 0; i < tasks.length; i++) {
+        const div = document.createElement('div')
+
+        div.innerText = tasks[i].text
+
+        tasksContainer.appendChild(div)
+    }
+
+    return tasksContainer
+}
+
+const renderForm = function(){
+    const formContainer = document.createElement('div')
+
+    const input = document.createElement('input')
+    const button = document.createElement('button')
+
+    button.innerText = 'ADD NEW TASK'
+
+    formContainer.appendChild(input)
+    formContainer.appendChild(button)
+
+    return formContainer
+}
 
 const render = function (containerSelector = 'body') {
     const container = document.querySelector(containerSelector)
@@ -19,21 +46,11 @@ const render = function (containerSelector = 'body') {
 
     container.innerHTML = ''
 
-    const input = document.createElement('input')
-    const button = document.createElement('button')
+    const formContainer = renderForm()
+    const tasksContainer = renderTasks()
 
-    button.innerText = 'ADD NEW TASK'
-
-    container.appendChild(input)
-    container.appendChild(button)
-
-    for (let i = 0; i < tasks.length; i++) {
-        const div = document.createElement('div')
-
-        div.innerText = tasks[i].text
-
-        container.appendChild(div)
-    }
+    container.appendChild(formContainer)
+    container.appendChild(tasksContainer)
 }
 
 addTask('Wynieś śmieci')
