@@ -7,6 +7,9 @@ const saveTasks = function () {
 }
 
 const addTask = function (newTaskText) {
+    
+    if(!newTaskText) return
+    
     const newTask = {
         text: newTaskText,
         timestamp: Date.now(),
