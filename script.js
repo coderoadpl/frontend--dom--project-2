@@ -18,19 +18,29 @@ const addTask = function (newTaskText) {
     saveTasks()
 }
 
+const renderTask = function (task) {
+
+    const li = document.createElement('li')
+
+    li.innerText = task.text
+
+    return li
+
+}
+
 const renderTasks = function () {
     const tasksContainer = document.createElement('div')
 
     const ol = document.createElement('ol')
 
     for (let i = 0; i < tasks.length; i++) {
-        const li = document.createElement('li')
 
-        li.innerText = tasks[i].text
+        const li = renderTask(tasks[i])
 
         ol.appendChild(li)
-    }
 
+    }
+    
     tasksContainer.appendChild(ol)
 
     return tasksContainer
